@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Score Prediction</title>
+    <style>
+        body {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-image:url("static/credit.jpg");
+            background-size: cover; 
+            background-position: center;
+            background-attachment: fixed;
+           
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        form {
+            display: inline-block;
+            padding: 20px;
+        }
+        
+        .innerdiv {
+            border: 1px solid #83b7da;
+            padding: 50px 10px;
+            background-color: rgb(150, 180, 199);
+            height: 800px;
+            font-size: small;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        
+
+        .tbox {
+            border-radius: 10px;
+            padding: 6px 2px;
+            border: 1px solid #ccc;
+        }
+
+        .sbtbutton {
+            display: inline-block;
+            outline: none;
+            line-height: 1;
+            border-radius: 500px;
+            transition-property: background-color, border-color, color, box-shadow, filter;
+            border: 1px solid transparent;
+            min-width: 160px;
+            white-space: normal;
+            font-weight: 700;
+            text-align: center;
+            padding: 14px 40px;
+            background-color: #5e88a4;
+            height: 48px;
+            color: black;
+            font-size: 16px;
+            font-weight: lighter;
+        }
+
+        table {
+            margin: auto;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        .left {
+            text-align: left;
+            padding: 0 20px;
+        }
+    </style>
+</head>
+<body>
+
+<form action="\predict" method="post">
+   
+   
+    <!-- As a heading -->
+    <h1 align="center" style="color:black; font-weight: bold">CREDIT SCORE PREDICTION</h1>
+  
+
+    <div class="innerdiv">
+        <table>
+            <tr>
+                <td class="left"><label for="Month" style="color:black;font-size: 15px;">Month: </label></td>
+                <td><select class="tbox"  name="Month" id="Month" required>
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July/option>
+                        <option value="8">August</option>
+                        <option value="8">September</option>
+                        
+                    </select></td>
+                <td class="left"><label for="Age" style="color:black;font-size: 15px;">Age: </label></td>
+                <td><input class="tbox" type="text" id="Age" name="Age" required></td>
+            </tr>
+            <tr>
+                <td class="left"><label for="Occupation" style="color:black;font-size: 15px;">Occupation: </label></td>
+                <td><select class="tbox" name="Occupation" id="Occupation" required>
+                        <option value="0">Accountant</option>
+                        <option value="1">Architect</option>
+                        <option value="2">Developer</option>
+                        <option value="3">Doctor</option>
+                        <option value="4">Engineer</option>
+                        <option value="5">Entrepreneur</option>
+                        <option value="6">Journalist</option>
+                        <option value="7">Lawyer</option>
+                        <option value="8">Manager</option>
+                        <option value="9">Mechanic</option>
+                        <option value="10">Media_Manager</option>
+                        <option value="11">Musician</option>
+                        <option value="12">Scientist</option>
+                        <option value="13">Teacher</option>
+                        <option value="14">Writer</option>
+                    </select></td>
+                <td class="left"><label for="Annual_Income" style="color:black;font-size: 15px;">Annual Income: </label></td>
+                <td><input class="tbox" type="text" id="Annual_Income" name="Annual_Income" required></td>
+            </tr>
+            <tr>
+                <td class="left"><label for="Num_Bank_Accounts" style="color:black;font-size: 15px;">Number of Bank Accounts: </label></td>
+                <td><input class="tbox" type="text" id="Num_Bank_Accounts" name="Num_Bank_Accounts" required></td>
+                <td class="left"><label for="Num_Credit_Card" style="color:black;font-size: 15px;">Number of Credit Cards: </label></td>
+                <td><input class="tbox" type="text" id="Num_Credit_Card" name="Num_Credit_Card" required></td>
+            </tr>
+            <tr>
+                
+                <td class="left"><label for="Num_of_Loan" style="color:black;font-size: 15px;">Numbrer of loans: </label></td>
+                <td><input class="tbox" type="text" id="Num_of_Loan" name="Num_of_Loan" required></td>
+                <td class="left"><label for="Credit_Mix" style="color:black;font-size: 15px;">Credit Mix: </label></td>
+                <td><select class="tbox" name="Credit_Mix" id="Credit_Mix" required>
+                        <option value="0">Bad</option>
+                        <option value="1">Good</option>
+                        <option value="2">Standard</option>
+                </select></td>        
+            </tr>
+            <tr>
+                <td class="left"><label for="Auto_Loan" style="color:black;font-size: 15px;">Auto Loan: </label></td>
+                <td>
+                    <select class="tbox" id="Auto_Loan" name="Auto_Loan" required>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </td>
+                <td class="left"><label for="Credit_Builder_Loan" style="color:black;font-size: 15px;">Credit Builder Loan: </label></td>
+                <td>
+                    <select class="tbox" id="Credit_Builder_Loan" name="Credit_Builder_Loan" required>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="left"><label for="Personal_Loan" style="color:black;font-size: 15px;">Personal Loan: </label></td>
+                <td>
+                    <select class="tbox" id="Personal_Loan" name="Personal_Loan" required>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </td>
+                <td class="left"><label for="Home_Enquity_Loan" style="color:black;font-size: 15px;">Home Equity Loan: </label></td>
+                <td>
+                    <select class="tbox" id="Home_Enquity_Loan" name="Home_Enquity_Loan" required>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="left"><label for="Mortgage_Loan" style="color:black;font-size: 15px;">Mortgage Loan: </label></td>
+                <td>
+                    <select class="tbox" id="Mortgage_Loan" name="Mortgage_Loan" required>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </td>
+                <td class="left"><label for="Student_Loan" style="color:black;font-size: 15px;">Student Loan: </label></td>
+                <td>
+                    <select class="tbox" id="Student_Loan" name="Student_Loan" required>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="left"><label for="Debt_Consolidation_Loan" style="color:black;font-size: 15px;">Debt consolidation Loan: </label></td>
+                <td>
+                    <select class="tbox" id="Debt_Consolidation_Loan" name="Debt_Consolidation_Loan" required>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </td>
+                <td class="left"><label for="Payday_Loan" style="color:black;font-size: 15px;">Payday Loan: </label></td>
+                <td>
+                    <select class="tbox" id="Payday_Loan" name="Payday_Loan" required>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                
+                <td class="left"><label for="Interest_Rate" style="color:black;font-size: 15px;">Interest Rate: </label></td>
+                <td><input class="tbox" type="text" id="Interest_Rate" name="Interest_Rate" required></td>
+                <td class="left"><label for="Total_EMI_per_month" style="color:black;font-size: 15px;">Total EMI per month: </label></td>
+                <td><input class="tbox" type="text" id="Total_EMI_per_month" name="Total_EMI_per_month" required></td>
+                               
+            </tr>
+            <tr>
+                <td class="left"><label for="Num_of_Delayed_Payment" style="color:black;font-size: 15px;">Number of delayed payments: </label></td>
+                <td><input class="tbox" type="text" id="Num_of_Delayed_Payment" name="Num_of_Delayed_Payment" required></td>
+                <td class="left"><label for="Delay_from_due_date" style="color:black;font-size: 15px;">Delay from due date: </label></td>
+                <td><input class="tbox" type="text" id="Delay_from_due_date" name="Delay_from_due_date" required></td>
+            </tr>
+            <tr>
+                <td class="left"><label for="Outstanding_Debt" style="color:black;font-size: 15px;">Outstanding Debt: </label></td>
+                <td><input class="tbox" type="text" id="Outstanding_Debt" name="Outstanding_Debt" required></td>
+                <td class="left"><label for="Payment_of_Min_Amount" style="color:black;font-size: 15px;">Payment of Minimum Amount: </label></td>
+                <td>
+                    <select class="tbox" name="Payment_of_Min_Amount" id="Payment_of_Min_Amount" required>
+                        <option value="0">NM</option>
+                        <option value="1">No</option>
+                        <option value="2">Yes</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="left"><label for="Credit_History_Age" style="color:black;font-size: 15px;">Credit History Age: </label></td>
+                <td><input class="tbox" type="text" id="Credit_History_Age" name="Credit_History_Age" required></td>
+                <td class="left"><label for="Num_Credit_Inquiries" style="color:black;font-size: 15px;">Number of credit inquiries: </label></td>
+                <td><input class="tbox" type="text" id="Num_Credit_Inquiries" name="Num_Credit_Inquiries" required></td>
+            </tr>
+            <tr>
+                <td class="left"><label for="Changed_Credit_Limit" style="color:black;font-size: 15px;">Changed Credit Limit: </label></td>
+                <td><input class="tbox" type="text" id="Changed_Credit_Limit" name="Changed_Credit_Limit" required></td>
+                <td class="left"><label for="Credit_Utilization_Ratio" style="color:black;font-size: 15px;">Credit Utilization Ratio: </label></td>
+                <td><input class="tbox" type="text" id="Credit_Utilization_Ratio" name="Credit_Utilization_Ratio" required></td>
+            </tr>
+            <tr>
+                <td class="left"><label for="Spending_behaviour" style="color:black;font-size: 15px;">Spending Behaviour: </label></td>
+                <td>
+                    <select class="tbox" id="Spending_behaviour" name="Spending_behaviour" required>
+                        <option value="0">High</option>
+                        <option value="1">Low</option>
+                    </select>
+                </td>
+                <td class="left"><label for="Payment_behaviour" style="color:black;font-size: 15px;">Payment Behaviour: </label></td>
+                <td>
+                    <select class="tbox" id="Payment_behaviour" name="Payment_behaviour" required>
+                        <option value="0">Large</option>
+                        <option value="1">Medium</option>
+                        <option value="2">Small</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="left"><label for="Monthly_Balance" style="color:black;font-size: 15px;">Monthly Balance: </label></td>
+                <td><input class="tbox" type="text" id="Monthly_Balance" name="Monthly_Balance" required></td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <input type="submit" value="CREDIT SCORE" class="sbtbutton" >
+    </div>
+    <br>
+    <br>
+    
+</form>
+
+</body>
+</html>
+        
